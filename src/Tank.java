@@ -15,12 +15,13 @@ public class Tank {
     private TankClient tc;
     int life = 100;
 
-    enum Direction {
-        L, LU, U, RU, R, RD, D, LD, STOP
-    }
+    private Direction gunDir = Direction.STOP;
 
     private Direction dir = Direction.STOP;
-    private Direction gunDir = Direction.D;
+
+    enum D {
+        L, LU, U, RU, R, RD, D, LD, STOP
+    }
     private boolean bL = false, bU = false, bR = false, bD = false;
     boolean good;
     boolean live = true;

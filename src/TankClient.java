@@ -11,7 +11,7 @@ public class TankClient extends Frame {
     public static final int HEIGHT = 800;
     private static int enemyTanksNum = 10;
     private static int rank = 1;
-    Tank myTank = new Tank(100, 100, this, true, Tank.Direction.STOP);
+    Tank myTank = new Tank(100, 100, this, true, Direction.STOP);
     private Image offScreen = null;
     List<Missile> missiles = new ArrayList<>();
     List<Tank> enemyTanks = new ArrayList<>();
@@ -20,7 +20,7 @@ public class TankClient extends Frame {
     private BloodBar bb = new BloodBar(this);
     private BloodBuff bbf = new BloodBuff(this);
 
-    private  TankClient() {
+    private TankClient() {
         setTitle("TankWar");
         setSize(WIDTH, HEIGHT);
         setBackground(Color.green);
@@ -30,7 +30,7 @@ public class TankClient extends Frame {
         walls.add(w1);
         walls.add(w2);
         for (int i = 0; i < 10; i++) {
-            Tank t = new Tank(100 + (i + 2) * 100, 100, this, false, Tank.Direction.D);
+            Tank t = new Tank(100 + (i + 2) * 100, 100, this, false, Direction.D);
             enemyTanks.add(t);
         }
         setVisible(true);
@@ -46,7 +46,8 @@ public class TankClient extends Frame {
     public void paint(Graphics g) {
         g.drawString("missile count: " + missiles.size(), 10, 50);
         g.drawString("tank count: " + enemyTanks.size(), 10, 70);
-        for (Wall w : walls) {
+        for (int i = 0; i < walls.size(); i++) {
+            Wall w = walls.get(i);
             w.draw(g);
         }
         myTank.draw(g);
@@ -60,19 +61,21 @@ public class TankClient extends Frame {
             t.hitWalls(walls);
             t.hitTanks(enemyTanks);
         }
-        for (Missile m : missiles) {
+        for (int i = 0; i < missiles.size(); i++) {
+            Missile m = missiles.get(i);
             m.draw(g);
             m.hitTanks(enemyTanks);
             m.hitTank(myTank);
             m.hitWalls(walls);
         }
-        for (Explode e : explodes) {
+        for (int i = 0; i < explodes.size(); i++) {
+            Explode e = explodes.get(i);
             e.draw(g);
         }
         if (enemyTanks.size() == 0) {
             rank++;
             for (int i = 0; i < enemyTanksNum + rank * 3; i++) {
-                Tank t = new Tank(100 + (i + 2) * 100, 100, this, false, Tank.Direction.D);
+                Tank t = new Tank(100 + (i + 2) * 100, 100, this, false, Direction.D);
                 enemyTanks.add(t);
             }
         }

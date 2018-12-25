@@ -9,11 +9,11 @@ public class Missile {
     private int x;
     private int y;
     private TankClient tc;
-    private Tank.Direction dir;
+    private Direction dir;
     private boolean live = true;
     private boolean good;
 
-    Missile(int x, int y, TankClient tc, Tank.Direction dir, boolean good) {
+    Missile(int x, int y, TankClient tc, Direction dir, boolean good) {
         this.x = x;
         this.y = y;
         this.tc = tc;
@@ -27,7 +27,10 @@ public class Missile {
             return;
         }
         Color c = g.getColor();
-        g.setColor(Color.black);
+        if (good)
+            g.setColor(Color.YELLOW);
+        else
+            g.setColor(Color.black);
         g.fillOval(x, y, WIDHT, HEIGHT);
         g.setColor(c);
         move();
