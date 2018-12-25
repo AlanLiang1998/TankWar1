@@ -6,8 +6,8 @@ import java.util.Random;
 public class Tank {
     private static final int WIDHT = 50;
     private static final int HEIGHT = 50;
-    private static final int XSPEED = 2;
-    private static final int YSPEED = 2;
+    private static final int XSPEED = 10;
+    private static final int YSPEED = 10;
     int x;
     int y;
     private int oldX;
@@ -26,7 +26,7 @@ public class Tank {
     boolean good;
     boolean live = true;
     private static Random rand = new Random();
-    private int step = rand.nextInt(100) + 20;
+    private int step = rand.nextInt(30) + 10;
 
     Tank(int x, int y, TankClient tc, boolean good, Direction dir) {
         this.x = x;
@@ -186,9 +186,9 @@ public class Tank {
                 Direction[] dirs = Direction.values();
                 int d = rand.nextInt(dirs.length);
                 dir = dirs[d];
-                step = rand.nextInt(200);
+                step = rand.nextInt(30) + 10;
             }
-            if (rand.nextInt(1000) > 995)
+            if (rand.nextInt(1000) > 950)
                 fire();
         }
     }

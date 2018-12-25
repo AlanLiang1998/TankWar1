@@ -4,8 +4,8 @@ import java.util.List;
 public class Missile {
     public static final int WIDHT = 10;
     public static final int HEIGHT = 10;
-    private static final int XSPEED = 4;
-    private static final int YSPEED = 4;
+    private static final int XSPEED = 20;
+    private static final int YSPEED = 20;
     private int x;
     private int y;
     private TankClient tc;
