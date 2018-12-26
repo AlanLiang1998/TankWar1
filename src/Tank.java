@@ -1,13 +1,14 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 public class Tank {
     private static final int WIDHT = 50;
     private static final int HEIGHT = 50;
-    private static final int XSPEED = 10;
-    private static final int YSPEED = 10;
+    private static final int XSPEED = 1;
+    private static final int YSPEED = 1;
     int x;
     int y;
     private int oldX;
@@ -18,15 +19,58 @@ public class Tank {
     private Direction gunDir = Direction.STOP;
 
     private Direction dir = Direction.STOP;
-
-    enum D {
-        L, LU, U, RU, R, RD, D, LD, STOP
-    }
     private boolean bL = false, bU = false, bR = false, bD = false;
     boolean good;
     boolean live = true;
     private static Random rand = new Random();
     private int step = rand.nextInt(30) + 10;
+    private static Toolkit tk = Toolkit.getDefaultToolkit();
+    private static Image[] myTankImages = null;
+    private static HashMap<String, Image> myImgsMap = new HashMap<>();
+    private static Image[] enemyTankImages = null;
+    private static HashMap<String, Image> enemyImgsMap = new HashMap<>();
+
+    static {
+        myTankImages = new Image[8];
+        myTankImages[0] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankL.gif"));
+        myTankImages[1] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankLU.gif"));
+        myTankImages[2] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankU.gif"));
+        myTankImages[3] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankRU.gif"));
+        myTankImages[4] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankR.gif"));
+        myTankImages[5] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankRD.gif"));
+        myTankImages[6] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankD.gif"));
+        myTankImages[7] = tk.createImage(Tank.class.getClassLoader().getResource("images/myTank/tankLD.gif"));
+
+        myImgsMap.put("L", myTankImages[0]);
+        myImgsMap.put("LU", myTankImages[1]);
+        myImgsMap.put("U", myTankImages[2]);
+        myImgsMap.put("RU", myTankImages[3]);
+        myImgsMap.put("R", myTankImages[4]);
+        myImgsMap.put("RD", myTankImages[5]);
+        myImgsMap.put("D", myTankImages[6]);
+        myImgsMap.put("LD", myTankImages[7]);
+    }
+
+    static {
+        enemyTankImages = new Image[8];
+        enemyTankImages[0] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankL.gif"));
+        enemyTankImages[1] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankLU.gif"));
+        enemyTankImages[2] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankU.gif"));
+        enemyTankImages[3] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankRU.gif"));
+        enemyTankImages[4] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankR.gif"));
+        enemyTankImages[5] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankRD.gif"));
+        enemyTankImages[6] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankD.gif"));
+        enemyTankImages[7] = tk.createImage(Tank.class.getClassLoader().getResource("images/enemyTank/tankLD.gif"));
+
+        enemyImgsMap.put("L", enemyTankImages[0]);
+        enemyImgsMap.put("LU", enemyTankImages[1]);
+        enemyImgsMap.put("U", enemyTankImages[2]);
+        enemyImgsMap.put("RU", enemyTankImages[3]);
+        enemyImgsMap.put("R", enemyTankImages[4]);
+        enemyImgsMap.put("RD", enemyTankImages[5]);
+        enemyImgsMap.put("D", enemyTankImages[6]);
+        enemyImgsMap.put("LD", enemyTankImages[7]);
+    }
 
     Tank(int x, int y, TankClient tc, boolean good, Direction dir) {
         this.x = x;
@@ -43,40 +87,53 @@ public class Tank {
             tc.enemyTanks.remove(this);
             return;
         }
-        Color c = g.getColor();
+        /*Color c = g.getColor();
         if (good)
             g.setColor(Color.red);
         else
             g.setColor(Color.blue);
         g.fillOval(x, y, WIDHT, HEIGHT);
-        g.setColor(c);
+        g.setColor(c);*/
         move();
-        int CenterX = x + WIDHT / 2;
-        int CenterY = y + HEIGHT / 2;
+       /* int CenterX = x + WIDHT / 2;
+        int CenterY = y + HEIGHT / 2;*/
+        HashMap<String, Image> map = null;
+        if (good)
+            map = myImgsMap;
+        else
+            map = enemyImgsMap;
         switch (gunDir) {
             case L:
-                g.drawLine(CenterX, CenterY, x, y + HEIGHT / 2);
+                g.drawImage(map.get("L"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x, y + HEIGHT / 2);
                 break;
             case LU:
-                g.drawLine(CenterX, CenterY, x, y);
+                g.drawImage(map.get("LU"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x, y);
                 break;
             case U:
-                g.drawLine(CenterX, CenterY, x + WIDHT / 2, y);
+                g.drawImage(map.get("U"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x + WIDHT / 2, y);
                 break;
             case RU:
-                g.drawLine(CenterX, CenterY, x + WIDHT, y);
+                g.drawImage(map.get("RU"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x + WIDHT, y);
                 break;
             case R:
-                g.drawLine(CenterX, CenterY, x + WIDHT, y + HEIGHT / 2);
+                g.drawImage(map.get("R"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x + WIDHT, y + HEIGHT / 2);
                 break;
             case RD:
-                g.drawLine(CenterX, CenterY, x + WIDHT, y + HEIGHT);
+                g.drawImage(map.get("RD"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x + WIDHT, y + HEIGHT);
                 break;
             case D:
-                g.drawLine(CenterX, CenterY, x + WIDHT / 2, y + HEIGHT);
+                g.drawImage(map.get("D"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x + WIDHT / 2, y + HEIGHT);
                 break;
             case LD:
-                g.drawLine(CenterX, CenterY, x, y + HEIGHT);
+                g.drawImage(map.get("LD"), x, y, null);
+//                g.drawLine(CenterX, CenterY, x, y + HEIGHT);
                 break;
             case STOP:
                 break;
@@ -188,7 +245,7 @@ public class Tank {
                 dir = dirs[d];
                 step = rand.nextInt(30) + 10;
             }
-            if (rand.nextInt(1000) > 950)
+            if (rand.nextInt(1000) > 990)
                 fire();
         }
     }

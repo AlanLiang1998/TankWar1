@@ -108,7 +108,7 @@ public class TankClient extends Frame {
             while (true) {
                 repaint();
                 try {
-                    Thread.sleep(30);
+                    Thread.sleep(5);
                     //   System.out.println("1");
                 } catch (InterruptedException e) {
                     e.printStackTrace();

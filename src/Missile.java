@@ -4,14 +4,16 @@ import java.util.List;
 public class Missile {
     public static final int WIDHT = 10;
     public static final int HEIGHT = 10;
-    private static final int XSPEED = 20;
-    private static final int YSPEED = 20;
+    private static final int XSPEED = 2;
+    private static final int YSPEED = 2;
     private int x;
     private int y;
     private TankClient tc;
     private Direction dir;
     private boolean live = true;
     private boolean good;
+    private static Toolkit tk = Toolkit.getDefaultToolkit();
+    private static Image missileImage = tk.createImage(Missile.class.getClassLoader().getResource("images/missile/missile.png"));
 
     Missile(int x, int y, TankClient tc, Direction dir, boolean good) {
         this.x = x;
@@ -26,13 +28,14 @@ public class Missile {
             tc.missiles.remove(this);
             return;
         }
-        Color c = g.getColor();
+        /*Color c = g.getColor();
         if (good)
             g.setColor(Color.YELLOW);
         else
             g.setColor(Color.black);
         g.fillOval(x, y, WIDHT, HEIGHT);
-        g.setColor(c);
+        g.setColor(c);*/
+        g.drawImage(missileImage, x, y, null);
         move();
     }
 

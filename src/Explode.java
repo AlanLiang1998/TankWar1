@@ -7,17 +7,29 @@ public class Explode {
     private boolean live = true;
     static Toolkit tk = Toolkit.getDefaultToolkit();
     private static Image[] images = {
-            tk.createImage(Explode.class.getClassLoader().getResource("images/0.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/1.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/2.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/3.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/4.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/5.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/6.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/7.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/8.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/9.gif")),
-            tk.createImage(Explode.class.getClassLoader().getResource("images/10.gif"))
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(1).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(2).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(3).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(4).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(5).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(6).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(7).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(8).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(9).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(10).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(11).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(12).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(13).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(14).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(15).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(16).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(17).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(18).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(19).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(20).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(21).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(22).png")),
+            tk.createImage(Explode.class.getClassLoader().getResource("images/explode/(23).png")),
     };
     private int step = 0;
 
